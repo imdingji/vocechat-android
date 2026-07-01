@@ -38,6 +38,7 @@ if (keystorePropertiesFile.exists()) {
 
 
 android {
+    namespace "com.privoce.vocechatclient"
     compileSdkVersion flutter.compileSdkVersion
 
     compileOptions {
