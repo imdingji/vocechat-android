@@ -1,4 +1,4 @@
-def localProperties = new Properties()
+﻿def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
     localPropertiesFile.withReader('UTF-8') { reader ->
@@ -39,15 +39,19 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace "com.privoce.vocechatclient"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 36
+
+    buildFeatures {
+        buildConfig true
+    }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
 
     sourceSets {
@@ -60,7 +64,7 @@ android {
         //minSdkVersion flutter.minSdkVersion
         multiDexEnabled true
         // manifestPlaceholders += [pdftronLicenseKey:PDFTRON_LICENSE_KEY]
-        targetSdkVersion 34
+        targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
          minSdkVersion 21
@@ -96,7 +100,7 @@ flutter {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     // @Author by andy
     // @Date 2022/05/21
