@@ -19,6 +19,17 @@ allprojects {
         google()
         mavenCentral()
     }
+
+    // Workaround for older plugins that do not set `namespace` in build.gradle (AGP 8.x).
+    afterEvaluate {
+        if (project.plugins.hasPlugin('com.android.library') || project.plugins.hasPlugin('com.android.application')) {
+            if (project.android.namespace == null || project.android.namespace.toString().trim().isEmpty()) {
+                project.android.namespace = project.path
+                        .replaceFirst('^:', '')
+                        .replaceAll(':', '.')
+            }
+        }
+    }
 }
 
 rootProject.buildDir = '../build'

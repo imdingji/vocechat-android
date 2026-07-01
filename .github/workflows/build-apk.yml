@@ -29,9 +29,20 @@ jobs:
       - name: Build debug APK
         run: flutter build apk --debug
 
-      - name: Upload APK
+      - name: Upload APK (Flutter output)
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: vocechat-debug-apk
           path: build/app/outputs/flutter-apk/app-debug.apk
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Upload APK (fallback path)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vocechat-debug-apk-fallback
+          path: build/app/outputs/apk/debug/app-debug.apk
+          if-no-files-found: ignore
           retention-days: 30
